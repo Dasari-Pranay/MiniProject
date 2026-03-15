@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import malevideo from '../assets/videos/male-ai.mp4'
+import maleAiVideo from "../assets/videos/male-ai.mp4";
 import femalevideo from '../assets/videos/female-ai.mp4'
 import Timer from './Timer'
 import { motion } from 'framer-motion'
