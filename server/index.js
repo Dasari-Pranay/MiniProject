@@ -1,18 +1,21 @@
-import express from "express"
-import dotenv from "dotenv"
-import connectDB from "./config/connectDB.js"
-import cookieParser from "cookie-parser"
-import cors from "cors"
-import authRouter from "./routes/auth.route.js"
-import userRouter from "./routes/user.route.js"
-import interviewRouter from "./routes/interview.route.js"
-import paymentRouter from "./routes/payment.route.js"
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/connectDB.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js";
+import interviewRouter from "./routes/interview.route.js";
+import paymentRouter from "./routes/payment.route.js";
 dotenv.config()
 
 const app = express();
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://miniproject-client-f5zl.onrender.com"
+  ],
+  credentials: true
 }));
 
 app.use(express.json());
