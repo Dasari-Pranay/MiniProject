@@ -10,7 +10,7 @@ import InterviewHistory from './pages/InterviewHistory.jsx';
 import InterviewReport from './pages/InterviewReport.jsx';
 import Pricing from './pages/Pricing.jsx';
 
-export const ServerUrl = "https://miniproject-gta6.onrender.com";
+export const ServerUrl = "https://miniproject-1-s30b.onrender.com";
 
 function App() {
 
