@@ -23,7 +23,7 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
   const [timeLeft, setTimeLeft] = useState(
     questions?.[0]?.timeLimit || 60
   );
-
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [selectedVoice, setSelectedVoice] = useState(null);
   const [voiceGender, setVoiceGender] = useState("female");
 
@@ -158,7 +158,7 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
   useEffect(() => {
 
-    if (isIntroPhase || !currentQuestion) return;
+    if (isIntroPhase || !currentQuestion || !isTimerRunning) return;
 
     const timer = setInterval(() => {
 
@@ -166,6 +166,7 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
         if (prev <= 1) {
           clearInterval(timer);
+          return 0;
         }
 
         return prev - 1;
@@ -176,12 +177,13 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
     return () => clearInterval(timer);
 
-  }, [currentIndex, isIntroPhase]);
+  }, [currentIndex, isIntroPhase, isTimerRunning]);
 
   useEffect(() => {
 
     if (!isIntroPhase && currentQuestion) {
       setTimeLeft(currentQuestion.timeLimit || 60);
+      setIsTimerRunning(true); 
     }
 
   }, [currentIndex]);
@@ -233,7 +235,7 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
   const submitAnswer = async () => {
 
     if (isSubmitting) return;
-
+    setIsTimerRunning(false);
     stopMic();
     setIsSubmitting(true);
 
