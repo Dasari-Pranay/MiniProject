@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import Timer from "./Timer";
 import { motion } from "framer-motion";
@@ -39,10 +40,7 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
       ? "/videos/male-ai.mp4"
       : "/videos/female-ai.mp4";
 
-  // ------------------ Load Voices ------------------
-
   useEffect(() => {
-
     const loadVoices = () => {
 
       if (!window.speechSynthesis) return;
@@ -78,8 +76,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
     }
 
   }, []);
-
-  // ------------------ Speak Function ------------------
 
   const speakText = (text) => {
 
@@ -128,8 +124,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
     });
   };
 
-  // ------------------ Intro + Question ------------------
-
   useEffect(() => {
 
     if (!selectedVoice) return;
@@ -162,8 +156,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
   }, [selectedVoice, isIntroPhase, currentIndex]);
 
-  // ------------------ Timer ------------------
-
   useEffect(() => {
 
     if (isIntroPhase || !currentQuestion) return;
@@ -193,8 +185,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
     }
 
   }, [currentIndex]);
-
-  // ------------------ Speech Recognition ------------------
 
   useEffect(() => {
 
@@ -240,8 +230,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
   };
 
-  // ------------------ Submit Answer ------------------
-
   const submitAnswer = async () => {
 
     if (isSubmitting) return;
@@ -274,8 +262,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
   };
 
-  // ------------------ Next Question ------------------
-
   const handleNext = async () => {
 
     setAnswer("");
@@ -291,8 +277,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
     setCurrentIndex((prev) => prev + 1);
 
   };
-
-  // ------------------ Finish Interview ------------------
 
   const finishInterview = async () => {
 
@@ -315,8 +299,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
   };
 
-  // ------------------ Auto Submit ------------------
-
   useEffect(() => {
 
     if (isIntroPhase || !currentQuestion) return;
@@ -326,8 +308,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
     }
 
   }, [timeLeft]);
-
-  // ------------------ Cleanup ------------------
 
   useEffect(() => {
 
@@ -344,14 +324,9 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
       <div className="w-full max-w-7xl min-h-[80vh] bg-white rounded-3xl shadow-2xl flex flex-col lg:flex-row overflow-hidden">
 
-        {/* VIDEO SECTION */}
+        <div className="lg:w-[35%] p-6 border-r flex flex-col space-y-6">
 
-        <div className="lg:w-[35%] p-6 border-r flex flex-col items-start space-y-6">
-
-          {/* AI VIDEO */}
-
-          <div className="w-full rounded-2xl overflow-hidden">
-
+          <div className="w-full max-w-md rounded-2xl overflow-hidden">
             <video
               src={videoSource}
               ref={videoRef}
@@ -360,27 +335,19 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
               preload="auto"
               className="w-full object-cover"
             />
-
           </div>
 
-          {/* SUBTITLE */}
-
           {subtitle && (
-
-            <div className="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 shadow-sm">
+            <div className="w-full max-w-md bg-gray-50 border border-gray-200 rounded-xl p-4 shadow-sm">
               <p className="text-gray-700 text-sm text-center font-medium">
                 {subtitle}
               </p>
             </div>
-
           )}
 
-          {/* TIMER + STATUS CARD */}
-
-          <div className="w-full bg-white border border-gray-200 rounded-2xl shadow-md p-6 space-y-5">
+          <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-md p-6 space-y-5">
 
             <div className="flex justify-between items-center">
-
               <span className="text-sm text-gray-500">
                 Interview Status
               </span>
@@ -390,14 +357,11 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
                   AI Speaking
                 </span>
               )}
-
             </div>
 
             <div className="h-px bg-gray-200"></div>
 
-            {/* TIMER */}
-
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center">
               <Timer
                 timeLeft={timeLeft}
                 totalTime={currentQuestion?.timeLimit || 60}
@@ -406,32 +370,24 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 
             <div className="h-px bg-gray-200"></div>
 
-            {/* QUESTION COUNTERS */}
-
             <div className="grid grid-cols-2 gap-6 text-center pt-2">
 
               <div className="flex flex-col items-center bg-emerald-50 rounded-xl py-3">
-
                 <span className="text-3xl font-bold text-emerald-600">
                   {currentIndex + 1}
                 </span>
-
                 <span className="text-xs text-gray-400 mt-1">
                   Current Question
                 </span>
-
               </div>
 
               <div className="flex flex-col items-center bg-teal-50 rounded-xl py-3">
-
                 <span className="text-3xl font-bold text-teal-600">
                   {questions.length}
                 </span>
-
                 <span className="text-xs text-gray-400 mt-1">
                   Total Questions
                 </span>
-
               </div>
 
             </div>
@@ -439,8 +395,6 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
           </div>
 
         </div>
-
-        {/* TEXT SECTION */}
 
         <div className="flex-1 p-6 flex flex-col">
 
@@ -515,3 +469,4 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
 };
 
 export default Step2SetUp;
+
