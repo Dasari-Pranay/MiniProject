@@ -255,21 +255,23 @@ const Step2SetUp = ({ interviewData, onFinish }) => {
   // ------------------ Finish Interview ------------------
 
   const finishInterview = async () => {
-    stopMic();
-    setIsMicOn(false);
+  stopMic();
+  setIsMicOn(false);
 
-    try {
-      await axios.post(
-        `${ServerUrl}/api/interview/finish`,
-        { interviewId },
-        { withCredentials: true }
-      );
+  try {
+    const result = await axios.post(
+      `${ServerUrl}/api/interview/finish`,
+      { interviewId },
+      { withCredentials: true }
+    );
 
-      onFinish?.();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    // send report data to InterviewPage
+    onFinish?.(result.data);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   // ------------------ Auto Submit ------------------
 
